@@ -1,0 +1,36 @@
+language: ruby
+cache:
+- bundler
+install:
+- bundle install
+rvm:
+- 2.4
+notifications:
+  email:
+    recipients:
+    - sensu-plugin@sensu-plugins.io
+    on_success: change
+    on_failure: always
+script:
+- bundle exec rake default
+- gem build sensu-plugins-plivo.gemspec
+- gem install sensu-plugins-plivo-*.gem
+before_deploy:
+- bash -c "[ ! -d bonsai/ ] && git clone https://github.com/sensu/sensu-go-bonsai-asset.git bonsai || echo 'bonsai/ exists, skipping git clone'"
+deploy:
+#- provider: rubygems
+#  api_key:
+#    secure: gMuxgppKnSouNgTmIsC4o717kiGt9ArP8RC8XsNi#+uu9bGYoy2z78gm8QGH1MNgN8Kf6tp6x#+PKf5zB881tQjzsbW3P4xMZf6AriqpUdPIodVQ7v49O9sNEao5WLk3uau1waCVGVbr#s8Aru38x1MDwEChcSL86umeeU2xrKiZ9Y=
+#  gem: sensu-plugins-plivo
+#  on:
+#    tags: true
+#    all_branches: true
+#    rvm: 2.4
+#    repo: sensu-plugins/sensu-plugins-plivo
+- provider: script
+  script: bonsai/ruby-runtime/travis-build-ruby-plugin-assets.sh sensu-plugins-plivo
+  skip_cleanup: true
+  on:
+    tags: true
+    all_branches: true
+    rvm: 2.4
