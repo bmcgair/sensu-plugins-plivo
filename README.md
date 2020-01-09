@@ -6,6 +6,7 @@
  * bin/handler-plivosms.rb
 
 ## Usage
+
 config goes in /etc/sensu/conf.d/plivosms_handler.json
 
 ```
@@ -30,3 +31,4 @@ config goes in /etc/sensu/conf.d/plivosms_handler.json
 [Installation and Setup](http://sensu-plugins.io/docs/installation_instructions.html)
 
 ## Notes
+tagged v.0.0.2
