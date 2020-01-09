@@ -8,5 +8,6 @@ This CHANGELOG follows the format listed at [Keep A Changelog](http://keepachang
 ## 0.0.1 - 2016-05-18
 ### Added
 - initial release
+- update plivo 
 
 [Unreleased]: https://github.com/sensu-plugins/sensu-plugins-p/compare/0.0.2...HEAD
